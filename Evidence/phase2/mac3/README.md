@@ -12,8 +12,10 @@ Each item has a `.txt` with the real command output (machine, IP, timestamp, com
 | p1-05-backend | Task C, F | Backend A listening on `*:3001`, `/` and `/api/status` both answer with `X-Backend: A`, `Cache-Control: max-age=60` and `ETag` |
 | extD-0-failover-mac3-view | Ext D | Seen from Mac 3 through the edge: A/B round robin → Backend A stopped, all 6 requests served by B with no errors → A restarted, balancing resumes after nginx's `fail_timeout`. Captured before the kit was pulled, so it uses a small start/stop helper instead of Ctrl+C, and `--resolve` instead of the team DNS. Mac 1's `extD` is the official capture. |
 
+## Skipped
+- `extC` (pf isolation): not being evaluated, so it was not run. `pf-isolation-mac3.conf` and `./scripts/mac3.sh extC` are still in the kit if it's needed later.
+
 ## Still pending (run with the team, per `scripts/README.md`)
-- `extC`: apply the pf rules, wait for Mac 1 and Mac 2 to test, roll back.
 - `extE`: standby edge on this Mac. Needs `brew install nginx` and both certificate files from Mac 2's `/opt/homebrew/etc/nginx/certs/`.
 
 The scripts write to `Evidences/phase2/mac3/`; move the new `.txt` files here and rerun `evidence-to-png.sh`.
